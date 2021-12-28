@@ -1,25 +1,16 @@
-<p align="center">
-  <img src="/sixty-four.png" alt="sixty-four" width="150" height="150"><br>
-  Your one stop shop for base64 needs<br>
-</p>
-
 # sixty-four
+
+The only JavaScript base64 library you will ever need
 
 ![Node.js CI](https://github.com/Hexagon/sixty-four/workflows/Node.js%20CI/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/sixty-four.svg)](https://badge.fury.io/js/sixty-four) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4978bdbf495941c087ecb32b120f28ff)](https://www.codacy.com/gh/Hexagon/sixty-four/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Hexagon/sixty-four&amp;utm_campaign=Badge_Grade)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Hexagon/sixty-four/blob/master/LICENSE) [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/hexagon/sixty-four/badge?style=rounded)](https://www.jsdelivr.com/package/gh/hexagon/sixty-four)
 
+*   Support both regular base64, and base64url
+*   Encode/Decode both string and ArrayBuffers
 *   Works in Node.js >=4.0 (both require and import).
 *   Works in Deno >=1.16.
 *   Works in browsers as standalone, UMD or ES-module.
 *   Includes [TypeScript](https://www.typescriptlang.org/) typings.
-
-Quick examples:
-
-```javascript
-// ...
-```
-
-More [examples](#examples)...
 
 ## Installation
 
