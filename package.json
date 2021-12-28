@@ -1,0 +1,68 @@
+{
+  "name": "sixty-four",
+  "version": "0.0.9",
+  "description": "One stop shop for base64 needs",
+  "author": "Hexagon <github.com/hexagon>",
+  "homepage": "https://hexagon.github.io/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexagon/sixty-four"
+  },
+  "bugs": {
+    "url": "https://github.com/hexagon/sixty-four/issues"
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "types/*",
+    "SECURITY.md",
+    "sixty-four.png"
+  ],
+  "keywords": [
+    "base64",
+    "base64url",
+    "parser",
+    "sixty-four",
+    "sheduler",
+    "timer",
+    "isomorphic"
+  ],
+  "scripts": {
+    "test": "uvu test test.sixty-four.js",
+    "test:dist": "uvu test",
+    "test:coverage": "c8 --include=src npm test",
+    "test:lint": "eslint ./**/*.js ./**/*.cjs",
+    "test:lint:fix": "eslint --fix  ./**/*.js ./**/*.cjs",
+    "build": "npm update && npm run build:precleanup && npm run test:lint && npm run build:typings && npm run build:dist && npm run build:minify && npm run build:cleanup && npm run test:coverage && npm run test:dist",
+    "build:ci": "npm run test:lint && npm run build:typings && npm run build:dist && npm run build:minify && npm run build:cleanup && npm run test:coverage && npm run test:dist",
+    "build:precleanup": "(rm -rf types/* || del /Q types\\*) && (rm -rf dist/* || del /Q dist\\*)",
+    "build:dist": "rollup -c ./rollup.config.js",
+    "build:minify": "uglifyjs dist/sixty-four.cjs --source-map -o dist/sixty-four.min.js && uglifyjs dist/sixty-four.mjs --source-map -o dist/sixty-four.min.mjs",
+    "build:typings": "tsc",
+    "build:cleanup": "(rm dist/sixty-four.mjs || del dist\\sixty-four.mjs)",
+    "build:docs": "(rm -rf docs/* || rd /S /Q docs) && jsdoc -c .jsdoc.json"
+  },
+  "type": "module",
+  "main": "./dist/sixty-four.cjs",
+  "browser": "./dist/sixty-four.min.js",
+  "module": "./src/sixty-four.js",
+  "types": "types/sixty-four.single.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/sixty-four.js",
+      "require": "./dist/sixty-four.cjs",
+      "browser": "./dist/sixty-four.min.js"
+    }
+  },
+  "devDependencies": {
+    "c8": "^7.10.0",
+    "eslint": "^8.2.0",
+    "jsdoc": "^3.6.7",
+    "jsdoc-chameleon-template": "^1.0.2",
+    "rollup": "^2.59.0",
+    "typescript": "^4.4.4",
+    "uglify-js": "^3.14.3",
+    "uvu": "^0.5.2"
+  },
+  "license": "MIT"
+}
