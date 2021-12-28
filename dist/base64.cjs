@@ -94,7 +94,7 @@
 			bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
 		}
 
-		return bytes;
+		return arraybuffer;
 
 	};
 
@@ -102,12 +102,13 @@
 	 * Convenience function for converting base64 encoded string to an ArrayBuffer instance
 	 * @public
 	 * 
-	 * @param {ArrayBuffer} bytes - Data to be encoded
+	 * @param {ArrayBuffer} arrBuf - ArrayBuffer to be encoded
 	 * @param {boolean} [urlMode] - If set to true, URL mode string will be returned
 	 * @returns {string} - Base64 representation of data
 	 */
-	base64.fromArrayBuffer = (bytes, urlMode) => {
-		let i,
+	base64.fromArrayBuffer = (arrBuf, urlMode) => {
+		let bytes = new Uint8Array(arrBuf),
+			i,
 			len = bytes.length,
 			result = "",
 			target = urlMode ? charsUrl : chars;

@@ -13,11 +13,11 @@ export namespace base64 {
      * Convenience function for converting base64 encoded string to an ArrayBuffer instance
      * @public
      *
-     * @param {ArrayBuffer} bytes - Data to be encoded
+     * @param {ArrayBuffer} arrBuf - ArrayBuffer to be encoded
      * @param {boolean} [urlMode] - If set to true, URL mode string will be returned
      * @returns {string} - Base64 representation of data
      */
-    function fromArrayBuffer(bytes: ArrayBuffer, urlMode?: boolean): string;
+    function fromArrayBuffer(arrBuf: ArrayBuffer, urlMode?: boolean): string;
     /**
      * Convenience function for converting base64 to string
      * @public
