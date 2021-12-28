@@ -22,8 +22,8 @@ THE SOFTWARE.
 
 */
 
-import base64 from "../dist/sixty-four.min.mjs";
-import { base64 as base642 } from "../dist/sixty-four.min.mjs";
+import base64 from "../dist/base64.min.mjs";
+import { base64 as base642 } from "../dist/base64.min.mjs";
 import test from "./src/suite.cjs";
 test(base64);
 test(base642);

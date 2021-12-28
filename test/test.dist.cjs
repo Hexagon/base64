@@ -26,6 +26,6 @@ THE SOFTWARE.
 
 "use strict";
 const 
-	base64 = require("../dist/sixty-four.cjs"),
+	base64 = require("../dist/base64.cjs"),
 	test = require("./src/suite.cjs");
 test(base64);

@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------------------
 
-  sixty-four - MIT License - Hexagon <github.com/Hexagon>
+  base64 - MIT License - Hexagon <github.com/Hexagon>
 
   ------------------------------------------------------------------------------------
 
@@ -141,7 +141,7 @@ base64.toString = (str, urlMode) => {
  * @returns {string} - Base64 encoded string
  */
 base64.fromString = (str, urlMode) => {
-	return base64.fromByteArray(Buffer.from(str), urlMode);
+	return base64.fromArrayBuffer(Buffer.from(str), urlMode);
 };
 
 export default base64;

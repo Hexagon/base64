@@ -1,17 +1,17 @@
 export default [
 	{
-		input: "./src/sixty-four.single.js",
+		input: "./src/base64.single.js",
 		output: {
-			file: "dist/sixty-four.cjs",
+			file: "dist/base64.cjs",
 			format: "umd",
 			name: "base64",
 			exports: "default"
 		}
 	},
 	{	
-		input: "./src/sixty-four.js",
+		input: "./src/base64.js",
 		output: {
-			file: "dist/sixty-four.mjs",
+			file: "dist/base64.mjs",
 			format: "es"
 		}
 	}

@@ -21,8 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-import base64 from "../src/sixty-four.js";
-import { base64 as base642 } from "../src/sixty-four.js";
+import base64 from "../src/base64.js";
+import { base64 as base642 } from "../src/base64.js";
 import test from "./src/suite.cjs";
 test(base64);
 test(base642);
