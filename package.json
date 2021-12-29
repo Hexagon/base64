@@ -15,8 +15,7 @@
     "dist/*",
     "src/*",
     "types/*",
-    "SECURITY.md",
-    "base64.png"
+    "SECURITY.md"
   ],
   "keywords": [
     "base64",
