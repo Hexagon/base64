@@ -3,6 +3,11 @@
   "version": "1.0.13",
   "description": "Base64 and base64url to string or arraybuffer, and back. Node, Deno or browser.",
   "author": "Hexagon <github.com/hexagon>",
+  "contributors": [{
+    "name": "Niklas von Hertzen",
+    "email": "niklasvh@gmail.com",
+    "url": "https://hertzen.com"
+  }],
   "homepage": "https://hexagon.github.io/base64",
   "repository": {
     "type": "git",

@@ -137,6 +137,10 @@ The library encodes and decodes base64/base64url to and from ArrayBuffers
 
 See [Contribution Guide](/CONTRIBUTING.md)
 
+### Contributors
+
+The underlying code is loosely based on [github.com/niklasvh/base64-arraybuffer](https://github.com/niklasvh/base64-arraybuffer)
+
 ## License
 
 MIT
