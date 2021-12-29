@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/base64.png" alt="Croner" width="150" height="150"><br>
+  <img src="/base64.png" alt="Croner" width="200" height="200"><br>
   Probably the only JavaScript base64 library you'll ever need.<br>
 </p>
 
