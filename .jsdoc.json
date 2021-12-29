@@ -14,7 +14,7 @@
     "recurseDepth": 2,
     "template": {
       "title": "@hexagon/base64",
-      "shortTitle": "base64",
+      "shortTitle": "@hexagon/base64",
       "logo": "https://cdn.jsdelivr.net/gh/hexagon/base64@master/base64.png",
       "links": [ 
         {"github": "https://github.com/hexagon/base64", "title": "View it on Github"},

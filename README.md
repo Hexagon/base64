@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/base64.png" alt="Croner" width="200" height="200"><br>
+  <img src="https://cdn.jsdelivr.net/gh/hexagon/base64@main/base64.png" alt="@hexagon/base64" width="200" height="200"><br>
   <br>Probably the only JavaScript base64 library you'll ever need.<br>
 </p>
 
@@ -89,7 +89,7 @@ To use as a [ES-module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 ```
 ## Documentation
 
-Full documentation available at [hexagon.github.io/base64](https://hexagon.github.io/base64/base64.html).
+Full documentation available at [hexagon.github.io/base64](https://hexagon.github.io/base64/).
 
 ### Examples
 
