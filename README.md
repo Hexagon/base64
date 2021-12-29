@@ -11,8 +11,8 @@ Base64 and base64url to string or arraybuffer, and back. In Node, Deno or browse
 [![npm version](https://badge.fury.io/js/@hexagon%2Fbase64.svg)](https://badge.fury.io/js/@hexagon%2Fbase64) [![NPM Downloads](https://img.shields.io/npm/dm/@hexagon/base64.svg)](https://www.npmjs.org/package/@hexagon/base64) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4978bdbf495941c087ecb32b120f28ff)](https://www.codacy.com/gh/Hexagon/base64/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Hexagon/base64&amp;utm_campaign=Badge_Grade)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Hexagon/base64/blob/master/LICENSE) [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/hexagon/base64/badge?style=rounded)](https://www.jsdelivr.com/package/gh/hexagon/base64)
 
-*   Support regular base64, and base64url
-*   Convert to/from string or ArrayBuffers
+*   Supports regular base64, as well as base64url
+*   Convert to/from string or arraybuffer
 *   Works in Node.js >=4.0 (both require and import).
 *   Works in Deno >=1.16.
 *   Works in browsers as standalone, UMD or ES-module.
@@ -91,7 +91,33 @@ To use as a [ES-module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 
 Full documentation available at [hexagon.github.io/base64](https://hexagon.github.io/base64/base64.html).
 
-## API
+### Examples
+
+Assuming you have imported base64 as described under 'Installation'.
+
+```javascript
+// Encode string as regular base64
+const example1enc = base64.fromString("Hellö Wörld, how are you doing today?!");
+console.log(example1enc);
+// > SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk/IQ==
+
+// Decode string as regular base64
+const example1dec = base64.toString("SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk/IQ==");
+console.log(example1dec);
+// > Hellö Wörld, how are you doing today?!
+
+// Encode string as base64url (setting the second parameter to true gives base64url)
+const example2enc = base64.fromString("Hellö Wörld, how are you doing today?!", true);
+console.log(example2enc);
+// > SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk_IQ
+
+// Decode string as base64url (setting the second parameter to true takes base64url)
+const example2dec = base64.toString("SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk_IQ", true);
+console.log(example2dec);
+// > Hellö Wörld, how are you doing today?!
+```
+
+### Full API
 
 The library encodes and decodes base64/base64url to and from ArrayBuffers
 
