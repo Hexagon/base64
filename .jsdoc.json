@@ -13,12 +13,12 @@
     ],
     "recurseDepth": 2,
     "template": {
-      "title": "boss64",
-      "shortTitle": "boss64",
-      "logo": "https://cdn.jsdelivr.net/gh/hexagon/boss64@master/boss64.png",
+      "title": "@hexagon/base64",
+      "shortTitle": "base64",
+      "logo": "https://cdn.jsdelivr.net/gh/hexagon/base64@master/base64.png",
       "links": [ 
-        {"github": "https://github.com/hexagon/boss64", "title": "View it on Github"},
-        {"npm": "https://www.npmjs.com/package/boss64", "title": "View it on NPM", "size": 19}
+        {"github": "https://github.com/hexagon/base64", "title": "View it on Github"},
+        {"npm": "https://www.npmjs.com/package/@hexagon/base64", "title": "View it on NPM", "size": 19}
       ],
       "scheme": "0", 
       "disableSort": false,

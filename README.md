@@ -1,6 +1,11 @@
+<p align="center">
+  <img src="/base64.png" alt="Croner" width="150" height="150"><br>
+  Probably the only JavaScript base64 library you'll ever need.<br>
+</p>
+
 # @hexagon/base64
 
-Base64 and base64url to string or arraybuffer, and back.
+Base64 and base64url to string or arraybuffer, and back. In Node, Deno or browser.
 
 [![Node.js CI](https://github.com/Hexagon/base64/actions/workflows/node.js.yml/badge.svg)](https://github.com/Hexagon/base64/actions/workflows/node.js.yml) 
 [![npm version](https://badge.fury.io/js/@hexagon%2Fbase64.svg)](https://badge.fury.io/js/@hexagon%2Fbase64) [![NPM Downloads](https://img.shields.io/npm/dm/@hexagon/base64.svg)](https://www.npmjs.org/package/@hexagon/base64) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4978bdbf495941c087ecb32b120f28ff)](https://www.codacy.com/gh/Hexagon/base64/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Hexagon/base64&amp;utm_campaign=Badge_Grade)
