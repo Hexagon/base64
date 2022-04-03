@@ -1,12 +1,12 @@
 /* ------------------------------------------------------------------------------------
 
-  base64 - MIT License - Hexagon <github.com/Hexagon>
+  base64 - MIT License - Hexagon <hexagon@56k.guru>
 
   ------------------------------------------------------------------------------------
 
   License:
 
-	Copyright (c) 2021 Hexagon <github.com/Hexagon>
+	Copyright (c) 2021 Hexagon <hexagon@56k.guru>
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
@@ -128,10 +128,11 @@ base64.fromArrayBuffer = (arrBuf, urlMode) => {
  * @public
  * 
  * @param {string} str - Base64 encoded string to be decoded
+ * @param {boolean} [urlMode] - If set to true, URL mode string will be expected
  * @returns {string} - Decoded string
  */
 base64.toString = (str, urlMode) => {
-	return Buffer.from(base64.toArrayBuffer(str, urlMode)).toString();
+	return new TextDecoder().decode(base64.toArrayBuffer(str, urlMode));
 };
 
 /**
@@ -139,10 +140,11 @@ base64.toString = (str, urlMode) => {
  * @public
  * 
  * @param {string} str - String to be converted to base64
+ * @param {boolean} [urlMode] - If set to true, URL mode string will be returned
  * @returns {string} - Base64 encoded string
  */
 base64.fromString = (str, urlMode) => {
-	return base64.fromArrayBuffer(Buffer.from(str), urlMode);
+	return base64.fromArrayBuffer(new TextEncoder().encode(str), urlMode);
 };
 
 export default base64;

@@ -23,15 +23,17 @@ export namespace base64 {
      * @public
      *
      * @param {string} str - Base64 encoded string to be decoded
+     * @param {boolean} [urlMode] - If set to true, URL mode string will be expected
      * @returns {string} - Decoded string
      */
-    function toString(str: string, urlMode: any): string;
+    function toString(str: string, urlMode?: boolean): string;
     /**
      * Convenience function for converting a javascript string to base64
      * @public
      *
      * @param {string} str - String to be converted to base64
+     * @param {boolean} [urlMode] - If set to true, URL mode string will be returned
      * @returns {string} - Base64 encoded string
      */
-    function fromString(str: string, urlMode: any): string;
+    function fromString(str: string, urlMode?: boolean): string;
 }

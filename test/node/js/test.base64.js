@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2015-2017 Hexagon <robinnilsson@gmail.com>
+Copyright (c) 2022 Hexagon <hexagon@56k.guru>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,11 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-
-/* eslint no-unused-vars: 0 */
-
-"use strict";
-const 
-	base64 = require("../dist/base64.cjs"),
-	test = require("./src/suite.cjs");
+import base64 from "../../../src/base64.js";
+import { base64 as base642 } from "../../../src/base64.js";
+import test from "./src/suite.cjs";
 test(base64);
+test(base642);
+
