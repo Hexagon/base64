@@ -147,5 +147,6 @@ base64.fromString = (str, urlMode) => {
 	return base64.fromArrayBuffer(new TextEncoder().encode(str), urlMode);
 };
 
+base64.base64 = base64;
 export default base64;
 export { base64 };
