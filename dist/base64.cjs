@@ -153,6 +153,8 @@
 		return base64.fromArrayBuffer(new TextEncoder().encode(str), urlMode);
 	};
 
+	base64.base64 = base64;
+
 	return base64;
 
 }));

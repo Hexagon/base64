@@ -8,7 +8,7 @@ export namespace base64 {
      * @param {boolean} [urlMode] - If set to true, URL mode string will be expected
      * @returns {ArrayBuffer} - Decoded data
      */
-    function toArrayBuffer(data: string, urlMode?: boolean): ArrayBuffer;
+    export function toArrayBuffer(data: string, urlMode?: boolean): ArrayBuffer;
     /**
      * Convenience function for converting base64 encoded string to an ArrayBuffer instance
      * @public
@@ -17,7 +17,7 @@ export namespace base64 {
      * @param {boolean} [urlMode] - If set to true, URL mode string will be returned
      * @returns {string} - Base64 representation of data
      */
-    function fromArrayBuffer(arrBuf: ArrayBuffer, urlMode?: boolean): string;
+    export function fromArrayBuffer(arrBuf: ArrayBuffer, urlMode?: boolean): string;
     /**
      * Convenience function for converting base64 to string
      * @public
@@ -26,7 +26,7 @@ export namespace base64 {
      * @param {boolean} [urlMode] - If set to true, URL mode string will be expected
      * @returns {string} - Decoded string
      */
-    function toString(str: string, urlMode?: boolean): string;
+    export function toString(str: string, urlMode?: boolean): string;
     /**
      * Convenience function for converting a javascript string to base64
      * @public
@@ -35,5 +35,6 @@ export namespace base64 {
      * @param {boolean} [urlMode] - If set to true, URL mode string will be returned
      * @returns {string} - Base64 encoded string
      */
-    function fromString(str: string, urlMode?: boolean): string;
+    export function fromString(str: string, urlMode?: boolean): string;
+    export { base64 };
 }
