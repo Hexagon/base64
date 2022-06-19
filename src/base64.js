@@ -147,6 +147,32 @@ base64.fromString = (str, urlMode) => {
 	return base64.fromArrayBuffer(new TextEncoder().encode(str), urlMode);
 };
 
+/**
+ * Function to validate base64
+ * @public
+ * @param {string} encoded - Base64 or Base64url encoded data
+ * @param {boolean} [urlMode] - If set to true, base64url will be expected
+ * @returns {boolean} - Valid base64/base64url?
+ */
+base64.validate = (encoded, urlMode) => {
+
+	// Bail out if not string
+	if (!(typeof encoded === "string" || encoded instanceof String)) {
+		return false;
+	}
+
+	// Go on validate
+	try {
+		if (urlMode) {
+			return /^[-A-Za-z0-9\-_]*$/.test(encoded);
+		} else {
+			return /^[-A-Za-z0-9+/]*={0,3}$/.test(encoded);
+		}
+	} catch (_e) {
+		return false;
+	}
+};
+
 base64.base64 = base64;
 export default base64;
 export { base64 };

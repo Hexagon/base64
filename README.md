@@ -5,7 +5,7 @@
 
 # @hexagon/base64
 
-Base64 and base64url to string or arraybuffer, and back. Works in Node, Deno or browser.
+Encode, decode and validate base64 and base64url to string or arraybuffer, and back. Works in Node, Deno or browser.
 
 [![Node.js CI](https://github.com/Hexagon/base64/actions/workflows/node.js.yml/badge.svg)](https://github.com/Hexagon/base64/actions/workflows/node.js.yml) [![Deno CI](https://github.com/Hexagon/base64/actions/workflows/deno.yml/badge.svg)](https://github.com/Hexagon/base64/actions/workflows/deno.yml) 
 [![npm version](https://badge.fury.io/js/@hexagon%2Fbase64.svg)](https://badge.fury.io/js/@hexagon%2Fbase64) [![NPM Downloads](https://img.shields.io/npm/dm/@hexagon/base64.svg)](https://www.npmjs.org/package/@hexagon/base64) [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/@hexagon/base64/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@hexagon/base64) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4978bdbf495941c087ecb32b120f28ff)](https://www.codacy.com/gh/Hexagon/base64/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Hexagon/base64&amp;utm_campaign=Badge_Grade)
@@ -13,6 +13,7 @@ Base64 and base64url to string or arraybuffer, and back. Works in Node, Deno or 
 
 *   Supports regular base64, as well as base64url
 *   Convert to/from string or arraybuffer
+*   Validate / identify base64 and base64url
 *   Works in Node.js >=4.0 (both require and import).
 *   Works in Deno >=1.16.
 *   Works in browsers as standalone, UMD or ES-module.
@@ -133,6 +134,8 @@ The library encodes and decodes base64/base64url to and from ArrayBuffers
  - __fromString(buffer, true)__ - Encodes `String` into base64url string
  - __toString(str, true)__ - Decodes base64url string to `String`
 
+ - __validate(str)__ - Returns true if `String` is valid base64
+- __validate(str, true)__ - Returns true if `String` is valid base64
 ## Contributing
 
 See [Contribution Guide](/CONTRIBUTING.md)

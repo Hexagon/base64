@@ -3,45 +3,45 @@ import * as assert from "uvu/assert";
 import base64 from "../../..";
 
 // String base64
-test("Encode 'Hello Wörld'", function () {
+test("Encode 'Hello world'", function () {
     let result = base64.fromString("Hello world");
     assert.equal(result, "SGVsbG8gd29ybGQ=");
 });
 
-test("Decode 'Hello World'", function () {
+test("Decode 'Hello world'", function () {
     let result = base64.toString("SGVsbG8gd29ybGQ=");
     assert.equal(result, "Hello world");
 });
 
 // Basic string base64url
-test("Encode 'Hello Wörld' in base64url mode", function () {
+test("Encode 'Hello world' in base64url mode", function () {
     let result = base64.fromString("Hello world", true);
     assert.equal(result, "SGVsbG8gd29ybGQ");
 });
 
-test("Decode 'Hello World' in base64url mode", function () {
+test("Decode 'Hello world' in base64url mode", function () {
     let result = base64.toString("SGVsbG8gd29ybGQ", true);
     assert.equal(result, "Hello world");
 });
 
 // UTF-8 string
-test("Encode 'Hello Wörld' in base64url mode", function () {
+test("Encode 'Hello world' in base64url mode", function () {
     let result = base64.fromString("ɸåäd");
     assert.equal(result, "ybjDpcOkZA==");
 });
 
-test("Decode 'Hello World' in base64url mode", function () {
+test("Decode 'ɸåäd' in base64url mode", function () {
     let result = base64.toString("ybjDpcOkZA==");
     assert.equal(result, "ɸåäd");
 });
 
 // UTF-8 string url mode
-test("Encode 'Hello Wörld' in base64url mode", function () {
+test("Encode 'ɸåäd' in base64url mode", function () {
     let result = base64.fromString("ɸåäd", true);
     assert.equal(result, "ybjDpcOkZA");
 });
 
-test("Decode 'Hello World' in base64url mode", function () {
+test("Decode 'ɸåäd' in base64url mode", function () {
     let result = base64.toString("ybjDpcOkZA", true);
     assert.equal(result, "ɸåäd");
 });

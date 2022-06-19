@@ -36,5 +36,13 @@ export namespace base64 {
      * @returns {string} - Base64 encoded string
      */
     export function fromString(str: string, urlMode?: boolean): string;
+    /**
+     * Function to validate base64
+     * @public
+     * @param {string} encoded - Base64 or Base64url encoded data
+     * @param {boolean} [urlMode] - If set to true, base64url will be expected
+     * @returns {boolean} - Valid base64/base64url?
+     */
+    export function validate(encoded: string, urlMode?: boolean): boolean;
     export { base64 };
 }
