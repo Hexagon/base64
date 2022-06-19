@@ -116,26 +116,36 @@ console.log(example2enc);
 const example2dec = base64.toString("SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk_IQ", true);
 console.log(example2dec);
 // > Hellö Wörld, how are you doing today?!
+
+// Check if string is base64url (setting the second parameter to true validates base64url)
+const example3valid = base64.validate("SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk_IQ", true);
+console.log(example3valid);
+// > true
+
+// Check if string is base64
+const example4valid = base64.validate("SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk_IQ");
+console.log(example4valid);
+// > false
+
+// Check if string is base64
+const example5valid = base64.validate("SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk/IQ==");
+console.log(example5valid);
+// > true
+
 ```
 
 ### Full API
 
 The library encodes and decodes base64/base64url to and from ArrayBuffers
 
- - __fromArrayBuffer(buffer)__ - Encodes `ArrayBuffer` into base64 string
- - __toArrayBuffer(str)__ - Decodes base64 string to `ArrayBuffer`
-
- - __fromArrayBuffer(buffer, true)__ - Encodes `ArrayBuffer` into base64url string
- - __toArrayBuffer(str, true)__ - Decodes base64url string to `ArrayBuffer`
+ - __fromArrayBuffer(buffer, urlMode)__ - Encodes `ArrayBuffer` into base64 or base64url if urlMode (optional) is true
+ - __toArrayBuffer(str, urlMode)__ - Decodes base64url string (or base64url string if urlMode is true) to `ArrayBuffer`
 
  - __fromString(str)__ - Encodes `String` into base64 string
  - __toString(str)__ - Decodes base64 string to `String`
 
- - __fromString(buffer, true)__ - Encodes `String` into base64url string
- - __toString(str, true)__ - Decodes base64url string to `String`
+- __validate(str, urlMode)__ - Returns true if `String` str is valid base64/base64 dependending on urlMode
 
- - __validate(str)__ - Returns true if `String` is valid base64
-- __validate(str, true)__ - Returns true if `String` is valid base64
 ## Contributing
 
 See [Contribution Guide](/CONTRIBUTING.md)
