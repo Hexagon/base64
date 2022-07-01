@@ -83,7 +83,7 @@ To use as a [ES-module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 
 ```html
 <script type="module">
-	import base64 from "https://cdn.jsdelivr.net/npm/@hexagon/base64@/dist/base64.min.mjs";
+	import base64 from "https://cdn.jsdelivr.net/npm/hexagon/base64@1/dist/base64.min.mjs";
 
 	// ... see usage section ...
 </script>

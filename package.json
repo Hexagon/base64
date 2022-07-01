@@ -1,6 +1,6 @@
 {
   "name": "@hexagon/base64",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "description": "Base64 and base64url to string or arraybuffer, and back. Node, Deno or browser.",
   "author": "Hexagon <github.com/hexagon>",
   "contributors": [{

@@ -128,13 +128,14 @@
   <br>Probably the only JavaScript base64 library you'll ever need.<br>
 </p>
 <h1>@hexagon/base64</h1>
-<p>Base64 and base64url to string or arraybuffer, and back. Works in Node, Deno or browser.</p>
-<p><a href="https://github.com/Hexagon/base64/actions/workflows/node.js.yml"><img src="https://github.com/Hexagon/base64/actions/workflows/node.js.yml/badge.svg" alt="Node.js CI"></a>
+<p>Encode, decode and validate base64 and base64url to string or arraybuffer, and back. Works in Node, Deno or browser.</p>
+<p><a href="https://github.com/Hexagon/base64/actions/workflows/node.js.yml"><img src="https://github.com/Hexagon/base64/actions/workflows/node.js.yml/badge.svg" alt="Node.js CI"></a> <a href="https://github.com/Hexagon/base64/actions/workflows/deno.yml"><img src="https://github.com/Hexagon/base64/actions/workflows/deno.yml/badge.svg" alt="Deno CI"></a>
 <a href="https://badge.fury.io/js/@hexagon%2Fbase64"><img src="https://badge.fury.io/js/@hexagon%2Fbase64.svg" alt="npm version"></a> <a href="https://www.npmjs.org/package/@hexagon/base64"><img src="https://img.shields.io/npm/dm/@hexagon/base64.svg" alt="NPM Downloads"></a> <a href="https://www.jsdelivr.com/package/npm/@hexagon/base64"><img src="https://data.jsdelivr.com/v1/package/npm/@hexagon/base64/badge?style=rounded" alt="jsdelivr"></a> <a href="https://www.codacy.com/gh/Hexagon/base64/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Hexagon/base64&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/4978bdbf495941c087ecb32b120f28ff" alt="Codacy Badge"></a>
 <a href="https://github.com/Hexagon/base64/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a></p>
 <ul>
 <li>Supports regular base64, as well as base64url</li>
 <li>Convert to/from string or arraybuffer</li>
+<li>Validate / identify base64 and base64url</li>
 <li>Works in Node.js &gt;=4.0 (both require and import).</li>
 <li>Works in Deno &gt;=1.16.</li>
 <li>Works in browsers as standalone, UMD or ES-module.</li>
@@ -180,7 +181,7 @@ const base64 = require(&quot;@hexagon/base64&quot;);
 </code></pre>
 <p>To use as a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ES-module</a></p>
 <pre class="prettyprint source lang-html"><code>&lt;script type=&quot;module&quot;>
-	import base64 from &quot;https://cdn.jsdelivr.net/npm/@hexagon/base64@/dist/base64.min.mjs&quot;;
+	import base64 from &quot;https://cdn.jsdelivr.net/npm/hexagon/base64@1/dist/base64.min.mjs&quot;;
 
 	// ... see usage section ...
 &lt;/script>
@@ -208,21 +209,31 @@ console.log(example2enc);
 const example2dec = base64.toString(&quot;SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk_IQ&quot;, true);
 console.log(example2dec);
 // > Hellö Wörld, how are you doing today?!
+
+// Check if string is base64url (setting the second parameter to true validates base64url)
+const example3valid = base64.validate(&quot;SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk_IQ&quot;, true);
+console.log(example3valid);
+// > true
+
+// Check if string is base64
+const example4valid = base64.validate(&quot;SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk_IQ&quot;);
+console.log(example4valid);
+// > false
+
+// Check if string is base64
+const example5valid = base64.validate(&quot;SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk/IQ==&quot;);
+console.log(example5valid);
+// > true
+
 </code></pre>
 <h3>Full API</h3>
 <p>The library encodes and decodes base64/base64url to and from ArrayBuffers</p>
 <ul>
 <li>
-<p><strong>fromArrayBuffer(buffer)</strong> - Encodes <code>ArrayBuffer</code> into base64 string</p>
+<p><strong>fromArrayBuffer(buffer, urlMode)</strong> - Encodes <code>ArrayBuffer</code> into base64 or base64url if urlMode (optional) is true</p>
 </li>
 <li>
-<p><strong>toArrayBuffer(str)</strong> - Decodes base64 string to <code>ArrayBuffer</code></p>
-</li>
-<li>
-<p><strong>fromArrayBuffer(buffer, true)</strong> - Encodes <code>ArrayBuffer</code> into base64url string</p>
-</li>
-<li>
-<p><strong>toArrayBuffer(str, true)</strong> - Decodes base64url string to <code>ArrayBuffer</code></p>
+<p><strong>toArrayBuffer(str, urlMode)</strong> - Decodes base64url string (or base64url string if urlMode is true) to <code>ArrayBuffer</code></p>
 </li>
 <li>
 <p><strong>fromString(str)</strong> - Encodes <code>String</code> into base64 string</p>
@@ -231,10 +242,7 @@ console.log(example2dec);
 <p><strong>toString(str)</strong> - Decodes base64 string to <code>String</code></p>
 </li>
 <li>
-<p><strong>fromString(buffer, true)</strong> - Encodes <code>String</code> into base64url string</p>
-</li>
-<li>
-<p><strong>toString(str, true)</strong> - Decodes base64url string to <code>String</code></p>
+<p><strong>validate(str, urlMode)</strong> - Returns true if <code>String</code> str is valid base64/base64 dependending on urlMode</p>
 </li>
 </ul>
 <h2>Contributing</h2>
