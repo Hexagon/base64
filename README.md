@@ -141,8 +141,8 @@ The library encodes and decodes base64/base64url to and from ArrayBuffers
  - __fromArrayBuffer(buffer, urlMode)__ - Encodes `ArrayBuffer` into base64 or base64url if urlMode (optional) is true
  - __toArrayBuffer(str, urlMode)__ - Decodes base64url string (or base64url string if urlMode is true) to `ArrayBuffer`
 
- - __fromString(str)__ - Encodes `String` into base64 string
- - __toString(str)__ - Decodes base64 string to `String`
+ - __fromString(str, urlMode)__ - Encodes `String` into base64 string (or base64url string if urlMode is true)
+ - __toString(str, urlMode)__ - Decodes base64 or base64url string to `String`
 
 - __validate(str, urlMode)__ - Returns true if `String` str is valid base64/base64 dependending on urlMode
 
