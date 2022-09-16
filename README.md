@@ -50,7 +50,7 @@ import base64 from "@hexagon/base64";
 JavaScript
 
 ```javascript
-import base64 from "https://cdn.jsdelivr.net/gh/hexagon/base64@1/src/base64.js";
+import base64 from "https://deno.land/x/b64@1.1.24/src/base64.js";
 
 // ...
 ```
@@ -58,7 +58,7 @@ import base64 from "https://cdn.jsdelivr.net/gh/hexagon/base64@1/src/base64.js";
 TypeScript
 
 ```typescript
-import { base64 } from "https://cdn.jsdelivr.net/gh/hexagon/base64@1/src/base64.js";
+import { base64 } from "https://deno.land/x/b64@1.1.24/src/base64.js";
 
 // ...
 ```
