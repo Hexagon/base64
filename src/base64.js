@@ -45,6 +45,9 @@ const
 	lookup = genLookup(chars),
 	lookupUrl = genLookup(charsUrl); 
 
+/**
+ * @namespace base64
+ */
 let base64 = {};
 
 /**
