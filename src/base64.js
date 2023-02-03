@@ -34,7 +34,7 @@ const
 	charsUrl = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",
 
 	genLookup = (target) => {
-		let lookupTemp = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256);
+		const lookupTemp = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256);
 		for (let i = 0; i < chars.length; i++) {
 			lookupTemp[target.charCodeAt(i)] = i;
 		}
@@ -48,7 +48,7 @@ const
 /**
  * @namespace base64
  */
-let base64 = {};
+const base64 = {};
 
 /**
  * Convenience function for converting a base64 encoded string to an ArrayBuffer instance
@@ -59,8 +59,9 @@ let base64 = {};
  * @returns {ArrayBuffer} - Decoded data
  */
 base64.toArrayBuffer = (data, urlMode) => {
+	const 
+		len = data.length;
 	let bufferLength = data.length * 0.75,
-		len = data.length,
 		i,
 		p = 0,
 		encoded1,
@@ -104,10 +105,13 @@ base64.toArrayBuffer = (data, urlMode) => {
  * @returns {string} - Base64 representation of data
  */
 base64.fromArrayBuffer = (arrBuf, urlMode) => {
-	let bytes = new Uint8Array(arrBuf),
+	const bytes = new Uint8Array(arrBuf);
+	let
 		i,
+		result = "";
+
+	const
 		len = bytes.length,
-		result = "",
 		target = urlMode ? charsUrl : chars;
 
 	for (i = 0; i < len; i += 3) {
