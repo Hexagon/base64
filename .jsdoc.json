@@ -88,7 +88,6 @@
     "opts": {
       "destination": "./docs/",
       "encoding": "utf8",
-      "private": false,
-      "template": "./node_modules/jsdoc-chameleon-template"
+      "private": false
     }
   }

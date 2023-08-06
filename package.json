@@ -1,6 +1,6 @@
 {
   "name": "@hexagon/base64",
-  "version": "1.1.26",
+  "version": "1.1.27",
   "description": "Base64 and base64url to string or arraybuffer, and back. Node, Deno or browser.",
   "author": "Hexagon <github.com/hexagon>",
   "contributors": [
@@ -62,14 +62,13 @@
     }
   },
   "devDependencies": {
-    "c8": "^7.10.0",
-    "eslint": "^8.2.0",
-    "jsdoc": "^4.0.0",
-    "jsdoc-chameleon-template": "^1.0.2",
-    "rollup": "^3.13.0",
-    "typescript": "^4.4.4",
-    "uglify-js": "^3.14.3",
-    "uvu": "^0.5.2"
+    "c8": "^8.0.1",
+    "eslint": "^8.46.0",
+    "jsdoc": "^4.0.2",
+    "rollup": "^3.27.2",
+    "typescript": "^5.1.6",
+    "uglify-js": "^3.17.4",
+    "uvu": "^0.5.6"
   },
   "license": "MIT"
 }
