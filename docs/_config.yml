@@ -1,0 +1,30 @@
+title: Hexagon/Base64
+
+description: Probably the only JavaScript base64 library you'll ever need!
+
+remote_theme: just-the-docs/just-the-docs
+
+url: https://base64.56k.guru
+
+aux_links:
+  GitHub Repository: https://github.com/hexagon/base64
+  NPM Library: https://www.npmjs.com/package/@hexagon/base64
+  Deno Library: https://deno.land/x/b64
+
+plugins:
+  - jekyll-relative-links
+  - jekyll-default-layout
+  
+# color_scheme: dark
+
+enable_copy_code_button: true
+
+# Footer content
+footer_content: "Copyright &copy; 2022-2023 Hexagon. Distributed by an <a href=\"https://github.com/hexagon/base64/tree/main/LICENSE\">MIT license.</a>"
+last_edit_time_format: "%b %e %Y at %I:%M %p"
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub."
+gh_edit_repository: "https://github.com/hexagon/base64"
+gh_edit_branch: "main"
+gh_edit_source: docs
+gh_edit_view_mode: "tree"
