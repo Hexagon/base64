@@ -5,7 +5,8 @@ nav_order: 3
 ---
 
 # Hexagon/Base64 Examples
-<br>
+
+---
 
 Assuming you have imported base64 as described under 'Installation'.
 

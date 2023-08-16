@@ -5,7 +5,8 @@ nav_order: 2
 ---
 
 # Installing Base64
-<br>
+
+---
 
 {% include display.html %}
 

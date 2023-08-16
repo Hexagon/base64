@@ -9,7 +9,6 @@ nav_order: 1
   <br>Probably the only JavaScript base64 library you'll ever need!<br>
 </p>
 
-
 This library is your go-to solution for encoding, decoding, and validating base64 and base64url for strings and array buffers. Written as a ES-module with full typings, it operates in any environment - like Node, Deno, Bun and browsers.
 
 - Supports regular base64 and base64url
