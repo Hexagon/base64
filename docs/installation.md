@@ -40,14 +40,14 @@ import base64 from "@hexagon/base64";
 JavaScript:
 
 ```javascript
-import base64 from "https://deno.land/x/b64@1.1.27/src/base64.js";
+import base64 from "https://deno.land/x/b64@1.1.28/src/base64.js";
 // ...
 ```
 
 TypeScript:
 
 ```
-import { base64 } from "https://deno.land/x/b64@1.1.27/src/base64.js";
+import { base64 } from "https://deno.land/x/b64@1.1.28/src/base64.js";
 // ...
 ```
 

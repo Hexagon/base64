@@ -48,7 +48,7 @@ We recommend using VS Code with eslint extensions. It will automatically check y
 
 ### Commit your update
 
-Please run ```npm run build``` before committing, to update the dist-files, and to make sure that every test and check passes. If you make changes to any function Interface, or to JSDoc in general, you should also run ```npm run build:docs``` to update the generated documentation.
+Please run ```npm run build``` before committing, to update the dist-files, and to make sure that every test and check passes.
 
 See [package.json](/package.json) scripts section for all available scripts.
 

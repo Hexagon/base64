@@ -41,7 +41,8 @@
 
 		genLookup = (target) => {
 			const lookupTemp = typeof Uint8Array === "undefined" ? [] : new Uint8Array(256);
-			for (let i = 0; i < chars.length; i++) {
+			const len = chars.length;
+			for (let i = 0; i < len; i++) {
 				lookupTemp[target.charCodeAt(i)] = i;
 			}
 			return lookupTemp;
@@ -50,6 +51,12 @@
 		// Use a lookup table to find the index.
 		lookup = genLookup(chars),
 		lookupUrl = genLookup(charsUrl); 
+
+	/**
+	 * Pre-calculated regexes for validating base64 and base64url
+	 */
+	const base64UrlPattern = /^[-A-Za-z0-9\-_]*$/;
+	const base64Pattern = /^[-A-Za-z0-9+/]*={0,3}$/;
 
 	/**
 	 * @namespace base64
@@ -103,7 +110,7 @@
 	};
 
 	/**
-	 * Convenience function for converting base64 encoded string to an ArrayBuffer instance
+	 * Convenience function for creating a base64 encoded string from an ArrayBuffer instance
 	 * @public
 	 * 
 	 * @param {ArrayBuffer} arrBuf - ArrayBuffer to be encoded
@@ -127,13 +134,15 @@
 			result += target[bytes[i + 2] & 63];
 		}
 
-		if (len % 3 === 2) {
+		const remainder = len % 3;
+		if (remainder === 2) {
 			result = result.substring(0, result.length - 1) + (urlMode ? "" : "=");
-		} else if (len % 3 === 1) {
+		} else if (remainder === 1) {
 			result = result.substring(0, result.length - 2) + (urlMode ? "" : "==");
 		}
 
 		return result;
+
 	};
 
 	/**
@@ -176,11 +185,7 @@
 
 		// Go on validate
 		try {
-			if (urlMode) {
-				return /^[-A-Za-z0-9\-_]*$/.test(encoded);
-			} else {
-				return /^[-A-Za-z0-9+/]*={0,3}$/.test(encoded);
-			}
+			return urlMode ? base64UrlPattern.test(encoded) : base64Pattern.test(encoded);
 		} catch (_e) {
 			return false;
 		}

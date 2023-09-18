@@ -10,7 +10,7 @@ export namespace base64 {
      */
     export function toArrayBuffer(data: string, urlMode?: boolean): ArrayBuffer;
     /**
-     * Convenience function for converting base64 encoded string to an ArrayBuffer instance
+     * Convenience function for creating a base64 encoded string from an ArrayBuffer instance
      * @public
      *
      * @param {ArrayBuffer} arrBuf - ArrayBuffer to be encoded
