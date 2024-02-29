@@ -40,15 +40,21 @@ import base64 from "@hexagon/base64";
 JavaScript:
 
 ```javascript
+// Deno.land/x
 import base64 from "https://deno.land/x/b64@1.1.28/src/base64.js";
-// ...
+
+// ... or jsr.io
+import base64 from "jsr:@hexagon/base64@1.1.28";
 ```
 
 TypeScript:
 
 ```
+// Deno.land/x
 import { base64 } from "https://deno.land/x/b64@1.1.28/src/base64.js";
-// ...
+
+// ... or jsr.io
+import { base64 } from "jsr:@hexagon/base64@1.1.28";
 ```
 
 ### Browser
