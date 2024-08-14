@@ -30,3 +30,6 @@ test.js
 
 # Deno lock file (there is no production dependencies)
 deno.lock
+
+# Built npm module
+npm

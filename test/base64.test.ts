@@ -1,5 +1,5 @@
-import { assertEquals } from "https://deno.land/std@0.128.0/testing/asserts.ts";
-import { base64 } from "../../../src/base64.js";
+import { assertEquals } from "jsr:@std/assert";
+import { base64 } from "../src/base64.ts";
 
 Deno.test("Encode 'Hello world'", function () {
   const result = base64.fromString("Hello world");
