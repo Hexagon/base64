@@ -1,4 +1,4 @@
-import { assertEquals } from "jsr:@std/assert";
+import { assertEquals } from "jsr:@std/assert@1.0.2";
 import { base64 } from "../src/base64.ts";
 
 Deno.test("Encode 'Hello world'", function () {

@@ -7,7 +7,7 @@ await emptyDir("./npm");
 await build({
   entryPoints: ["./src/base64.ts"],
   outDir: "./npm",
-  shims: { deno: true },
+  shims: { deno: "dev" },
   package: {
     // package.json properties
     name: packageJson.name,
@@ -33,5 +33,11 @@ await build({
       return false;
     }
     return true;
-  }
+  },
 });
+
+await Deno.writeTextFile(
+  "npm/.npmignore",
+  "*.map\n",
+  { append: true },
+);
