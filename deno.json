@@ -15,7 +15,7 @@
     "exclude": ["npm"]
   },
   "tasks": {
-    "build": "deno test && deno run --allow-read --allow-write --allow-env --allow-net --allow-run=npm tools/build.js"
+    "build": "deno test && deno run --allow-read --allow-write --allow-env --allow-net --allow-run=npm build/dnt.js"
   },
   "imports": { "@deno/dnt": "jsr:@deno/dnt@^0.41.3", "@std/assert": "jsr:@std/assert@^1.0.2" }
 }
