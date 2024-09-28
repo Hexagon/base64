@@ -32,4 +32,4 @@ test.js
 deno.lock
 
 # Built npm module
-npm
+dist
