@@ -1,5 +1,4 @@
-import { readJson, writeJson } from "https://deno.land/std/fs/mod.ts";
-
+import { readFile, writeFile } from "@cross/fs";
 import { resolve, fromFileUrl, dirname  } from "@std/path";
 
 const relativeProjectRoot = "../";
@@ -12,7 +11,7 @@ async function generatePackageJson() {
 
   // Read deno.json
   const denoConfigPath = resolve(resolvedPath, "deno.json");
-  const denoConfig = await readJson(denoConfigPath) as { name: string; version: string };
+  const denoConfig = JSON.parse(new TextDecoder().decode(await readFile(denoConfigPath))) as { name: string; version: string };
 
   // Define package.json template
   const packageJson = {
@@ -43,7 +42,6 @@ async function generatePackageJson() {
       "base64",
       "base64url",
       "parser",
-      "base64",
       "isomorphic",
       "arraybuffer",
       "string"
@@ -55,7 +53,7 @@ async function generatePackageJson() {
     types: "./dist/base64.d.ts",
     exports: {
       ".": {
-        import: "./src/base64.js",
+        import: "./dist/base64.js",
         require: "./dist/base64.cjs.js",
         browser: "./dist/base64.umd.js"
       }
@@ -65,7 +63,7 @@ async function generatePackageJson() {
 
   // Write package.json
   const packageJsonPath = resolve(resolvedPath, "package.json");
-  await writeJson(packageJsonPath, packageJson, { spaces: 2 });
+  await writeFile(packageJsonPath, new TextEncoder().encode(JSON.stringify(packageJson,undefined, 2)));
 
   console.log("package.json has been generated successfully.");
 }

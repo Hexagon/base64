@@ -33,3 +33,4 @@ deno.lock
 
 # Built npm module
 dist
+package.json

@@ -49,7 +49,7 @@ async function build() {
   // ESM build
   await esbuild.build({
     entryPoints: [resolve(relativeProjectRoot, 'src/base64.ts')],
-    outfile: resolve(relativeProjectRoot, outputFolder, 'base64.esm.js'),
+    outfile: resolve(relativeProjectRoot, outputFolder, 'base64.js'),
     bundle: true,
     platform: 'neutral',
     format: 'esm',
