@@ -53,8 +53,8 @@ async function generatePackageJson() {
     types: "./dist/base64.d.ts",
     exports: {
       ".": {
-        import: "./dist/base64.js",
-        require: "./dist/base64.cjs.js",
+        import: { "default": "./dist/base64.js", "types": "./dist/base64.d.ts" },
+        require: { "default": "./dist/base64.cjs", "types": "./dist/base64.d.cts" },
         browser: "./dist/base64.umd.js"
       }
     },

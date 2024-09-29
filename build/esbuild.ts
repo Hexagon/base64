@@ -2,6 +2,7 @@ import esbuild from "esbuild";
 import { dtsPlugin } from "esbuild-plugin-d.ts";
 import { exit } from "@cross/utils";
 import { dirname, fromFileUrl, resolve } from "@std/path";
+import { cp } from "@cross/fs";
 
 let relativeProjectRoot = "../";
 const outputFolder = "dist";
@@ -60,7 +61,12 @@ async function build() {
 }
 
 // Run the build function
-build().catch((error) => {
+try {
+  await build();
+} catch(error) {
   console.error(error);
   exit(1);
-});
+};
+
+// Copy .d.ts to .d.cts
+await cp(resolve(relativeProjectRoot, outputFolder, 'base64.d.ts'),resolve(relativeProjectRoot, outputFolder, 'base64.d.cts'));
