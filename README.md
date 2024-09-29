@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/hexagon/base64@main/base64.png" alt="@hexagon/base64" width="200" height="200"><br>
+  <img src="https://cdn.jsdelivr.net/gh/hexagon/base64@main/docs/base64.png" alt="@hexagon/base64" width="200" height="200"><br>
   <br>Probably the only JavaScript base64 library you'll ever need!<br>
 </p>
 
