@@ -13,8 +13,7 @@ relativeProjectRoot = resolve(currentScriptDir, relativeProjectRoot);
 const tsConfig = {
     declaration: true,
     compilerOptions: {
-        rootDir: resolve(relativeProjectRoot, "src"),
-        outDir: resolve(relativeProjectRoot, "dist")
+      outFile: resolve(relativeProjectRoot, "dist", "base64.min.d.ts"),
     }
 };
 
@@ -27,7 +26,7 @@ async function build() {
   // CommonJS build
   await esbuild.build({
     entryPoints: [resolve(relativeProjectRoot, 'src/base64.ts')],
-    outfile: resolve(relativeProjectRoot, outputFolder, 'base64.cjs'),
+    outfile: resolve(relativeProjectRoot, outputFolder, 'base64.min.cjs'),
     bundle: true,
     platform: 'node',
     format: 'cjs',
@@ -38,7 +37,7 @@ async function build() {
   // UMD build
   await esbuild.build({
     entryPoints: [resolve(relativeProjectRoot, 'src/base64.ts')],
-    outfile: resolve(relativeProjectRoot, outputFolder, 'base64.umd.js'),
+    outfile: resolve(relativeProjectRoot, outputFolder, 'base64.umd.min.js'),
     bundle: true,
     platform: 'browser',
     format: 'iife',
@@ -50,7 +49,7 @@ async function build() {
   // ESM build
   await esbuild.build({
     entryPoints: [resolve(relativeProjectRoot, 'src/base64.ts')],
-    outfile: resolve(relativeProjectRoot, outputFolder, 'base64.js'),
+    outfile: resolve(relativeProjectRoot, outputFolder, 'base64.min.js'),
     bundle: true,
     platform: 'neutral',
     format: 'esm',
@@ -69,4 +68,4 @@ try {
 };
 
 // Copy .d.ts to .d.cts
-await cp(resolve(relativeProjectRoot, outputFolder, 'base64.d.ts'),resolve(relativeProjectRoot, outputFolder, 'base64.d.cts'));
+await cp(resolve(relativeProjectRoot, outputFolder, 'base64.min.d.ts'),resolve(relativeProjectRoot, outputFolder, 'base64.min.d.cts'));

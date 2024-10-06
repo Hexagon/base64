@@ -47,14 +47,15 @@ async function generatePackageJson() {
       "string"
     ],
     type: "module",
-    main: "./dist/base64.cjs",
-    browser: "./dist/base64.umd.js",
-    module: "./dist/base64.js",
-    types: "./dist/base64.d.ts",
+    main: "./dist/base64.min.cjs",
+    browser: "./dist/base64.umd.min.js",
+    module: "./dist/base64.min.js",
+    types: "./dist/base64.min.d.ts",
     exports: {
+      "./package.json": "./package.json",
       ".": {
-        import: { "default": "./dist/base64.js", "types": "./dist/base64.d.ts" },
-        require: { "default": "./dist/base64.cjs", "types": "./dist/base64.d.cts" },
+        import: { "default": "./dist/base64.min.js", "types": "./dist/base64.min.d.ts" },
+        require: { "default": "./dist/base64.min.cjs", "types": "./dist/base64.min.d.cts" },
         browser: "./dist/base64.umd.js"
       }
     },
