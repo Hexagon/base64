@@ -7,8 +7,8 @@
 
 Encode, decode and validate base64/base64url to string/arraybuffer and vice-versa. Works in Node, Deno and browser.
 
-[![Node.js CI](https://github.com/Hexagon/base64/actions/workflows/node.js.yml/badge.svg)](https://github.com/Hexagon/base64/actions/workflows/node.js.yml) [![Deno CI](https://github.com/Hexagon/base64/actions/workflows/deno.yml/badge.svg)](https://github.com/Hexagon/base64/actions/workflows/deno.yml) 
-[![npm version](https://badge.fury.io/js/@hexagon%2Fbase64.svg)](https://badge.fury.io/js/@hexagon%2Fbase64) [![NPM Downloads](https://img.shields.io/npm/dm/@hexagon/base64.svg)](https://www.npmjs.org/package/@hexagon/base64) [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/@hexagon/base64/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@hexagon/base64) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4978bdbf495941c087ecb32b120f28ff)](https://www.codacy.com/gh/Hexagon/base64/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Hexagon/base64&amp;utm_campaign=Badge_Grade)
+[![CI](https://github.com/Hexagon/base64/actions/workflows/test.yml/badge.svg)](https://github.com/Hexagon/base64/actions/workflows/test.yml) 
+[![npm version](https://badge.fury.io/js/@hexagon%2Fbase64.svg)](https://badge.fury.io/js/@hexagon%2Fbase64) [![NPM Downloads](https://img.shields.io/npm/dm/@hexagon/base64.svg)](https://www.npmjs.org/package/@hexagon/base64) [![jsdelivr](https://data.jsdelivr.com/v1/package/npm/@hexagon/base64/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@hexagon/base64) 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Hexagon/base64/blob/master/LICENSE) 
 
 *   Supports regular base64 and base64url

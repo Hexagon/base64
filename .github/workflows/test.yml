@@ -1,0 +1,23 @@
+name: "@cross/test CI"
+
+on: 
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  deno_ci:
+    uses: cross-org/workflows/.github/workflows/deno-ci.yml@main
+    with:
+      entrypoint: src/base64.ts
+      lint_docs: false
+  bun_ci:
+    uses: cross-org/workflows/.github/workflows/bun-ci.yml@main
+    with:
+      jsr_dependencies: "@cross/test @std/assert"
+  node_ci:
+    uses: cross-org/workflows/.github/workflows/node-ci.yml@main
+    with:
+      test_target: "tests/*.test.ts"
+      jsr_dependencies: "@cross/test @std/assert"
