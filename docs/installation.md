@@ -20,18 +20,16 @@ JavaScript:
 
 ```javascript
 	// ESM Import
-	import base64 from "@hexagon/base64";
+	import { base64 } from "@hexagon/base64";
 
 	// ... or CommonJS Require
-	const base64 = require("@hexagon/base64");
+	const { base64 } = require("@hexagon/base64");
 ```
 
 TypeScript:
 
-*Note: In Node.js TypeScript, only the default export is available as the commonjs module is used internally.*
-
 ```javascript
-import base64 from "@hexagon/base64";
+import { base64 } from "@hexagon/base64";
 // ...
 ```
 
@@ -41,10 +39,10 @@ JavaScript:
 
 ```javascript
 // Deno.land/x
-import base64 from "https://deno.land/x/b64@2.0.0/src/base64.ts";
+import { base64 } from "https://deno.land/x/b64@2.0.0/src/base64.ts";
 
 // ... or jsr.io
-import base64 from "jsr:@hexagon/base64@2.0.0";
+import { base64 } from "jsr:@hexagon/base64@2.0.0";
 ```
 
 TypeScript:
@@ -77,7 +75,7 @@ As an [ES-module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/
 
 ```html
 <script type="module">
-    import base64 from "https://cdn.jsdelivr.net/npm/@hexagon/base64@2/dist/base64.js";
+    import { base64 } from "https://cdn.jsdelivr.net/npm/@hexagon/base64@2/dist/base64.js";
     // ... see 'Usage' section ...
 </script>
 ```
