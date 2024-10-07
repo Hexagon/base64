@@ -23,6 +23,7 @@ const baseConfig = {
       declarations: true,
       compilerOptions: {
         //@ts-ignore outDir is valid
+      allowImportingTsExtensions: true,
         outDir: resolvedDistPath,
       },
     },
@@ -39,10 +40,12 @@ const buildConfigs = [
   },
   {
     ...baseConfig,
+    entryPoints: [resolve(relativeProjectRoot, "src", "base64.default.ts")],
     outfile: resolve(resolvedDistPath, "base64.umd.js"),
     platform: "browser",
     format: "iife",
     globalName: "base64",
+    plugins: []
   },
   {
     ...baseConfig,

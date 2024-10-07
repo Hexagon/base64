@@ -153,5 +153,4 @@ const base64 = {
   },
 };
 
-export default base64;
 export { base64 };
