@@ -42,15 +42,15 @@ We recommend using VS Code with eslint extensions. It will automatically check y
     -   Using the command line:
     -   [Fork the repo](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#fork-an-example-repository) so that you can make your changes without affecting the original project until you're ready to merge them.
 
-3.   Install or update to **Node.js v16**.
+3.   Install or update to **Node.js v18**.
 
 3.   Create a working branch ```feature/my-cool-feature``` or ```bugfix/issue-14``` and start with your changes!
 
 ### Commit your update
 
-Please run ```npm run build``` before committing, to update the dist-files, and to make sure that every test and check passes.
+Please run ```deno task build``` before committing, to make sure that every test and check passes.
 
-See [package.json](/package.json) scripts section for all available scripts.
+See [deno.json](/deno.json) scripts section for all available scripts.
 
 Then, commit the changes once you are happy with them.
 
@@ -66,4 +66,4 @@ Once you submit your PR, a team member will review your proposal. We may ask que
 
 ### Success!
 
-This guide is based on [GitHub Docs CONTRIBUTING.md](https://github.com/github/docs/blob/main/CONTRIBUTING.md)
+This guide is based on [GitHub Docs CONTRIBUTING.md](https://github.com/github/docs/blob/main/.github/CONTRIBUTING.md)
