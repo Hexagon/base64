@@ -68,8 +68,7 @@ function toArrayBuffer(data: string, urlMode?: boolean): ArrayBuffer {
 }
 
 /**
- * Convenience
-function for creating a base64 encoded string from an ArrayBuffer instance
+ * Convenience function for creating a base64 encoded string from an ArrayBuffer instance
  * @public
  *
  * @param {ArrayBuffer} arrBuf - ArrayBuffer to be encoded
@@ -152,11 +151,11 @@ function validate(encoded: string, urlMode?: boolean): boolean {
  * @namespace base64
  */
 const base64 = {
-  toString,
-  fromString,
-  toArrayBuffer,
-  fromArrayBuffer,
-  validate,
+  toString: toString,
+  fromString: fromString,
+  toArrayBuffer: toArrayBuffer,
+  fromArrayBuffer: fromArrayBuffer,
+  validate: validate,
 };
 
 export { base64, fromArrayBuffer, fromString, toArrayBuffer, toString, validate };
