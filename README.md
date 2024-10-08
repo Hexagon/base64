@@ -36,11 +36,21 @@ Full documentation available at [base64.56k.guru](https://base64.56k.guru)
 
 ## Quick Installation
 
-Node.js: `npm install @hexagon/base64 --save`
+**Node.js:**
 
-Deno (x): `import { base64 } from "https://deno.land/x/b64@2.0.3/src/base64.ts";`
+```bash
+npm install @hexagon/base64 --save
+```
 
-Deno (jsr.io): `import { base64 } from "jsr:@hexagon/base64@2.0.3";`
+**Deno (x):**
+```js
+import { base64 } from "https://deno.land/x/b64@2.0.3/src/base64.ts";
+```
+
+**Deno (jsr.io):**
+```js
+import { base64 } from "jsr:@hexagon/base64";
+```
 
 For browser/cdn usage, refer to the documentation.
 
