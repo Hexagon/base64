@@ -39,20 +39,20 @@ JavaScript:
 
 ```javascript
 // Deno.land/x
-import { base64 } from "https://deno.land/x/b64@2.0.0/src/base64.ts";
+import { base64 } from "https://deno.land/x/b64@2.0.3/src/base64.ts";
 
 // ... or jsr.io
-import { base64 } from "jsr:@hexagon/base64@2.0.0";
+import { base64 } from "jsr:@hexagon/base64@2.0.3";
 ```
 
 TypeScript:
 
 ```
 // Deno.land/x
-import { base64 } from "https://deno.land/x/b64@2.0.2/src/base64.ts";
+import { base64 } from "https://deno.land/x/b64@2.0.3/src/base64.ts";
 
 // ... or jsr.io
-import { base64 } from "jsr:@hexagon/base64@2.0.2";
+import { base64 } from "jsr:@hexagon/base64@2.0.3";
 ```
 
 ### Browser
