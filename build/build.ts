@@ -95,7 +95,9 @@ if (Deno.args[1] === "clean") {
   /* Handle argument `package`: Generate package.json based on a base config and values from deno,json */
 } else if (Deno.args[1] === "package") {
   // Read version from deno.json
-  const denoConfig = await readJson<{ version: string }>(resolve(relativeProjectRoot, "deno.json"));
+  const denoConfig = await readJson<{ version: string; name: string }>(
+    resolve(relativeProjectRoot, "deno.json"),
+  );
 
   // Write package.json
   await writeFile(
@@ -103,6 +105,7 @@ if (Deno.args[1] === "clean") {
     new TextEncoder().encode(JSON.stringify(
       {
         ...await readJson<object>(resolve(relativeProjectRoot, "build/package.template.json")),
+        name: denoConfig.name,
         version: denoConfig.version,
       },
       null,
