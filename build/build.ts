@@ -1,160 +1,112 @@
 import esbuild from "esbuild";
 import { dtsPlugin } from "esbuild-plugin-d.ts";
-import { dirname, fromFileUrl, resolve } from "@std/path";
-import { cp, isDir, isFile, readFile, rm, rmdir, writeFile } from "@cross/fs";
+import { cp, readFile, writeFile } from "@cross/fs";
 
-const baseRelativeProjectRoot = "../"; // Where is this script located relative to the project root
-const outputFolder = "dist";
-const currentScriptDir = dirname(fromFileUrl(import.meta.url));
-const relativeProjectRoot = resolve(currentScriptDir, baseRelativeProjectRoot);
-const resolvedDistPath = resolve(relativeProjectRoot, outputFolder);
-const resolvedNodeModulesPath = resolve(relativeProjectRoot, "node_modules");
-const resolvedPackageJsonPath = resolve(relativeProjectRoot, "package.json");
-const resolvedDenoConfigPath = resolve(relativeProjectRoot, "deno.json");
-
-/* - Base esbuild configuration */
-const baseConfig = {
-  entryPoints: [resolve(relativeProjectRoot, "src", "base64.ts")],
-  bundle: true,
-  minify: true,
-  sourcemap: false,
-  plugins: [dtsPlugin({
-    tsconfig: {
-      declarations: true,
-      compilerOptions: {
-        //@ts-ignore outDir is valid
-        allowImportingTsExtensions: true,
-        outDir: resolvedDistPath,
-      },
-    },
-  })],
-};
-
-/* - All esbuild targets */
-const buildConfigs = [
-  {
-    ...baseConfig,
-    outfile: resolve(resolvedDistPath, "base64.cjs"),
-    platform: "node",
-    format: "cjs",
-  },
-  {
-    ...baseConfig,
-    outfile: resolve(resolvedDistPath, "base64.umd.js"),
-    platform: "browser",
-    format: "iife",
-    globalName: "base64",
-    plugins: [],
-  },
-  {
-    ...baseConfig,
-    outfile: resolve(resolvedDistPath, "base64.js"),
-    platform: "neutral",
-    format: "esm",
-  },
-];
-
-/* Base package.json (name and version will be transfered from deno.json) */
-const basePackageJson = {
-  description: "Base64 and base64url to string or arraybuffer, and back. Node, Deno or browser.",
-  author: "Hexagon <github.com/hexagon>",
-  contributors: [
-    {
-      name: "Niklas von Hertzen",
-      email: "niklasvh@gmail.com",
-      url: "https://hertzen.com",
-    },
-  ],
-  homepage: "https://base64.56k.guru",
-  repository: {
-    type: "git",
-    url: "https://github.com/hexagon/base64",
-  },
-  bugs: {
-    url: "https://github.com/hexagon/base64/issues",
-  },
-  files: [
-    "dist/*",
-    "SECURITY.md",
-  ],
-  keywords: [
-    "base64",
-    "base64url",
-    "parser",
-    "isomorphic",
-    "arraybuffer",
-    "string",
-  ],
-  type: "module",
-  main: "./dist/base64.cjs",
-  browser: "./dist/base64.umd.js",
-  module: "./dist/base64.js",
-  types: "./dist/base64.d.ts",
-  exports: {
-    "./package.json": "./package.json",
-    ".": {
-      import: { "default": "./dist/base64.js", "types": "./dist/base64.d.ts" },
-      require: { "default": "./dist/base64.cjs", "types": "./dist/base64.d.cts" },
-      browser: "./dist/base64.umd.js",
-    },
-  },
-  license: "MIT",
-};
-
-async function clean() {
-  if (await isDir(resolvedDistPath)) {
-    await rmdir(resolvedDistPath, {
-      recursive: true,
-    });
-  }
-  if (await isDir(resolvedNodeModulesPath)) {
-    await rmdir(resolvedNodeModulesPath, {
-      recursive: true,
-    });
-  }
-  if (await isFile(resolvedPackageJsonPath)) {
-    await rm(resolvedPackageJsonPath);
-  }
-}
-
-// Function to build with esbuild
-async function build() {
+/**
+ * Build helpers
+ */
+export async function build(
+  baseConfig: esbuild.BuildOptions,
+  configs?: esbuild.BuildOptions[],
+): Promise<void> {
+  const buildConfigs = configs?.map((config) => ({ ...baseConfig, ...config })) || [baseConfig];
   try {
-    //@ts-ignore No need to worry about config errors
     await Promise.all(buildConfigs.map((config) => esbuild.build(config)));
-    // Copy .d.ts to .d.cts
-    await cp(resolve(resolvedDistPath, "base64.d.ts"), resolve(resolvedDistPath, "base64.d.cts"));
+    console.log("All builds completed successfully.");
   } catch (error) {
     console.error("Build failed:", error);
   }
 }
+async function readJson<T>(filePath: string): Promise<T> {
+  const jsonData = await readFile(filePath);
+  return JSON.parse(new TextDecoder().decode(jsonData)) as T;
+}
 
-async function generatePackageJson() {
-  // Read deno.json
-  const denoConfig = JSON.parse(
-    new TextDecoder().decode(await readFile(resolvedDenoConfigPath)),
-  ) as { name: string; version: string };
+/**
+ * Now the actual build script
+ */
+import { dirname, fromFileUrl, resolve } from "@std/path";
 
-  // Define package.json template
-  const packageJson = {
-    ...basePackageJson,
-    name: denoConfig.name,
-    version: denoConfig.version,
-  };
+/* Preparations - Work out paths */
+const baseRelativeProjectRoot = "../"; // Where is this script located relative to the project root
+const currentScriptDir = dirname(fromFileUrl(import.meta.url));
+const relativeProjectRoot = resolve(currentScriptDir, baseRelativeProjectRoot);
+const resolvedDistPath = resolve(relativeProjectRoot, "dist");
+
+/* Handle argument `clean`: Rimraf build artifacts */
+if (Deno.args[1] === "clean") {
+  for (
+    const filePath of [
+      "package.json",
+      "tsconfig.json",
+      "node_modules",
+      "dist",
+    ]
+  ) {
+    try {
+      await Deno.remove(filePath, { recursive: true });
+    } catch (_e) { /* No-op */ }
+  }
+
+  /* Handle argument `build`: Transpile and generate typings */
+} else if (Deno.args[1] === "build") {
+  await build({
+    entryPoints: [resolve(relativeProjectRoot, "src", "base64.ts")],
+    bundle: true,
+    minify: true,
+    sourcemap: false,
+  }, [
+    {
+      outdir: resolvedDistPath,
+      platform: "node",
+      format: "cjs",
+      outExtension: { ".js": ".cjs" },
+    },
+    {
+      outfile: resolve(resolvedDistPath, "base64.umd.js"),
+      platform: "browser",
+      format: "iife",
+      globalName: "base64",
+    },
+    {
+      outdir: resolvedDistPath,
+      platform: "neutral",
+      format: "esm",
+      plugins: [dtsPlugin({
+        experimentalBundling: true,
+        tsconfig: {
+          compilerOptions: {
+            declaration: true,
+            emitDeclarationOnly: true,
+            allowImportingTsExtensions: true,
+            lib: ["es6", "dom"],
+          },
+        },
+      })],
+    },
+  ]);
+
+  // Just re-use the .d.ts for commonjs, as .d.cts
+  await cp(
+    resolve(resolvedDistPath, "base64.d.ts"),
+    resolve(resolvedDistPath, "base64.d.cts"),
+  );
+
+  /* Handle argument `package`: Generate package.json based on a base config and values from deno,json */
+} else if (Deno.args[1] === "package") {
+  // Read version from deno.json
+  const denoConfig = await readJson<{ version: string }>(resolve(relativeProjectRoot, "deno.json"));
 
   // Write package.json
   await writeFile(
-    resolvedPackageJsonPath,
-    new TextEncoder().encode(JSON.stringify(packageJson, undefined, 2)),
+    resolve(relativeProjectRoot, "package.json"),
+    new TextEncoder().encode(JSON.stringify(
+      {
+        ...await readJson<object>(resolve(relativeProjectRoot, "build/package.template.json")),
+        version: denoConfig.version,
+      },
+      null,
+      2,
+    )),
   );
-
-  console.log("package.json has been generated successfully.");
-}
-
-if (Deno.args[1] === "clean") {
-  await clean();
-} else if (Deno.args[1] === "build") {
-  await build();
-} else if (Deno.args[1] === "package") {
-  await generatePackageJson();
 }

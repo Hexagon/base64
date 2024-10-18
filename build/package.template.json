@@ -1,0 +1,45 @@
+{
+    "description": "Base64 and base64url to string or arraybuffer, and back. Node, Deno or browser.",
+    "author": "Hexagon <github.com/hexagon>",
+    "contributors": [
+      {
+        "name": "Niklas von Hertzen",
+        "email": "niklasvh@gmail.com",
+        "url": "https://hertzen.com"
+      }
+    ],
+    "homepage": "https://base64.56k.guru",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/hexagon/base64"
+    },
+   "bugs": {
+      "url": "https://github.com/hexagon/base64/issues"
+    },
+    "files": [
+      "dist/*",
+      "SECURITY.md"
+    ],
+    "keywords": [
+      "base64",
+      "base64url",
+      "parser",
+      "isomorphic",
+      "arraybuffer",
+      "string"
+    ],
+    "type": "module",
+    "main": "./dist/base64.cjs",
+    "browser": "./dist/base64.umd.js",
+    "module": "./dist/base64.js",
+    "types": "./dist/base64.d.ts",
+    "exports": {
+      "./package.json": "./package.json",
+      ".": {
+        "import": { "default": "./dist/base64.js", "types": "./dist/base64.d.ts" },
+        "require": { "default": "./dist/base64.cjs", "types": "./dist/base64.d.cts" },
+        "browser": "./dist/base64.umd.js"
+      }
+    },
+    "license": "MIT"
+  }
