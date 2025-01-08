@@ -44,7 +44,7 @@ npm install @hexagon/base64 --save
 
 **Deno (x):**
 ```js
-import { base64 } from "https://deno.land/x/b64@2.0.3/src/base64.ts";
+import { base64 } from "https://deno.land/x/b64@2.0.4/src/base64.ts";
 ```
 
 **Deno (jsr.io):**
