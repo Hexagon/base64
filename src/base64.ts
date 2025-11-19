@@ -122,7 +122,7 @@ function toString(str: string, urlMode?: boolean): string {
 string
  */
 function fromString(str: string, urlMode?: boolean): string {
-  return fromArrayBuffer(new TextEncoder().encode(str), urlMode);
+  return fromArrayBuffer(new TextEncoder().encode(str).buffer, urlMode);
 }
 
 /**
