@@ -13,8 +13,9 @@ Encode, decode and validate base64/base64url to string/arraybuffer and vice-vers
 
 *   Supports regular base64 and base64url
 *   Convert to/from string or arraybuffer
+*   **Streaming support** for encoding and decoding large data
 *   Validate / identify base64 and base64url
-*   Works in Node.js >=4.0 (both require and import).
+*   Works in Node.js >=16.5 (both require and import).
 *   Works in Deno >=1.16.
 *   Works in browsers as standalone, UMD or ES-module.
 *   Includes [TypeScript](https://www.typescriptlang.org/) typings.
@@ -63,6 +64,9 @@ For browser/cdn usage, refer to the documentation.
  - __toString(str, urlMode)__ - Decodes base64 or base64url string to `String`
 
 - __validate(str, urlMode)__ - Returns true if `String` str is valid base64/base64 dependending on urlMode
+
+- __Base64EncoderStream(urlMode)__ - Creates a `TransformStream` for streaming encoding of binary data to base64 strings
+- __Base64DecoderStream(urlMode)__ - Creates a `TransformStream` for streaming decoding of base64 strings to binary data
 
 ## Contributing
 

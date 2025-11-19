@@ -47,4 +47,44 @@ console.log(example4valid);
 const example5valid = base64.validate("SGVsbMO2IFfDtnJsZCwgaG93IGFyZSB5b3UgZG9pbmcgdG9kYXk/IQ==");
 console.log(example5valid);
 // > true
+
+// Streaming encode example
+const encoder = new base64.Base64EncoderStream();
+const textData = new TextEncoder().encode("Hello streaming world!");
+const encodedStream = ReadableStream.from([textData])
+  .pipeThrough(encoder);
+
+for await (const chunk of encodedStream) {
+  console.log(chunk);
+  // > SGVsbG8gc3RyZWFtaW5nIHdvcmxkIQ==
+}
+
+// Streaming decode example
+const decoder = new base64.Base64DecoderStream();
+const base64Data = "SGVsbG8gc3RyZWFtaW5nIHdvcmxkIQ==";
+const decodedStream = ReadableStream.from([base64Data])
+  .pipeThrough(decoder);
+
+const chunks = [];
+for await (const chunk of decodedStream) {
+  chunks.push(chunk);
+}
+const combined = new Uint8Array(chunks.reduce((acc, c) => acc + c.length, 0));
+let offset = 0;
+for (const chunk of chunks) {
+  combined.set(chunk, offset);
+  offset += chunk.length;
+}
+console.log(new TextDecoder().decode(combined));
+// > Hello streaming world!
+
+// Streaming with URL mode
+const urlEncoder = new base64.Base64EncoderStream(true);
+const urlEncodedStream = ReadableStream.from([textData])
+  .pipeThrough(urlEncoder);
+
+for await (const chunk of urlEncodedStream) {
+  console.log(chunk);
+  // > SGVsbG8gc3RyZWFtaW5nIHdvcmxkIQ
+}
 ```

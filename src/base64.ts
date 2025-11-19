@@ -147,6 +147,88 @@ function validate(encoded: string, urlMode?: boolean): boolean {
 }
 
 /**
+ * TransformStream for encoding binary data to base64 strings
+ * @public
+ */
+class Base64EncoderStream extends TransformStream<Uint8Array, string> {
+  constructor(urlMode = false) {
+    let buffer = new Uint8Array(0);
+
+    super({
+      transform(chunk: Uint8Array, controller) {
+        // Combine buffer with new chunk
+        const combined = new Uint8Array(buffer.length + chunk.length);
+        combined.set(buffer);
+        combined.set(chunk, buffer.length);
+
+        // Calculate how many complete 3-byte groups we can process
+        const completeGroups = Math.floor(combined.length / 3);
+        const processLength = completeGroups * 3;
+
+        if (processLength > 0) {
+          // Encode the complete groups
+          const toEncode = combined.slice(0, processLength);
+          const encoded = fromArrayBuffer(toEncode.buffer, urlMode);
+          controller.enqueue(encoded);
+        }
+
+        // Store remaining bytes for next chunk
+        buffer = combined.slice(processLength);
+      },
+
+      flush(controller) {
+        // Encode any remaining bytes
+        if (buffer.length > 0) {
+          const encoded = fromArrayBuffer(buffer.buffer, urlMode);
+          controller.enqueue(encoded);
+        }
+      },
+    });
+  }
+}
+
+/**
+ * TransformStream for decoding base64 strings to binary data
+ * @public
+ */
+class Base64DecoderStream extends TransformStream<string, Uint8Array> {
+  constructor(urlMode = false) {
+    let buffer = "";
+
+    super({
+      transform(chunk: string, controller) {
+        // Combine buffer with new chunk
+        buffer += chunk;
+
+        // Calculate how many complete 4-character groups we can process
+        // In urlMode, we don't have padding, so we process all complete groups
+        // In standard mode, we need to wait for padding or final chunk
+        const completeGroups = Math.floor(buffer.length / 4);
+        const processLength = completeGroups * 4;
+
+        if (processLength > 0) {
+          // Decode the complete groups
+          const toDecode = buffer.slice(0, processLength);
+          const decoded = toArrayBuffer(toDecode, urlMode);
+          controller.enqueue(new Uint8Array(decoded));
+        }
+
+        // Store remaining characters for next chunk
+        buffer = buffer.slice(processLength);
+      },
+
+      flush(controller) {
+        // Decode any remaining characters
+        if (buffer.length > 0) {
+          const decoded = toArrayBuffer(buffer, urlMode);
+          controller.enqueue(new Uint8Array(decoded));
+        }
+      },
+    });
+  }
+}
+
+/**
  * @namespace base64
  */
 const base64 = {
@@ -155,6 +237,17 @@ const base64 = {
   toArrayBuffer: toArrayBuffer,
   fromArrayBuffer: fromArrayBuffer,
   validate: validate,
+  Base64EncoderStream: Base64EncoderStream,
+  Base64DecoderStream: Base64DecoderStream,
 };
 
-export { base64, fromArrayBuffer, fromString, toArrayBuffer, toString, validate };
+export {
+  base64,
+  Base64DecoderStream,
+  Base64EncoderStream,
+  fromArrayBuffer,
+  fromString,
+  toArrayBuffer,
+  toString,
+  validate,
+};
