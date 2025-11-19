@@ -13,8 +13,9 @@ This library is your go-to solution for encoding, decoding, and validating base6
 
 - Supports regular base64 and base64url
 - Convert to/from string or arraybuffer
+- **Streaming support** for encoding and decoding large data
 - Validate / identify base64 and base64url
-- Works in Node.js >=4.0 (both require and import).
+- Works in Node.js >=16.5 (both require and import).
 - Works in Deno >=1.16.
 - Works in browsers as standalone, UMD, or ES-module.
 - Includes [TypeScript](https://www.typescriptlang.org/) typings.
@@ -90,6 +91,56 @@ This method validates a string to check if it's a valid base64 or base64url stri
 
 - **str** (`String`): The string that needs to be validated.
 - **urlMode** (`Boolean`, Optional): When set to true, it validates the string for base64url format. Default is false.
+
+## Base64EncoderStream(urlMode)
+
+This class creates a `TransformStream` for streaming encoding of binary data to base64 strings. It's useful for encoding large files or data streams without loading everything into memory at once.
+
+```javascript
+// Example: Encode a file stream
+const encoder = new base64.Base64EncoderStream();
+const fileStream = await Deno.open("large-file.bin");
+const encodedStream = fileStream.readable
+  .pipeThrough(encoder)
+  .pipeThrough(new TextEncoderStream());
+
+await encodedStream.pipeTo((await Deno.create("encoded.txt")).writable);
+```
+
+### Parameters
+
+- **urlMode** (`Boolean`, Optional): When set to true, encoding is done to base64url. Default is `false`.
+
+### Features
+
+- Handles chunk boundaries automatically - no need to align input to 3-byte boundaries
+- Memory efficient - processes data in chunks
+- Compatible with Web Streams API standard
+
+## Base64DecoderStream(urlMode)
+
+This class creates a `TransformStream` for streaming decoding of base64 strings to binary data. Perfect for decoding large base64-encoded files or streams.
+
+```javascript
+// Example: Decode a base64 stream
+const decoder = new base64.Base64DecoderStream();
+const base64Stream = await Deno.open("encoded.txt");
+const decodedStream = base64Stream.readable
+  .pipeThrough(new TextDecoderStream())
+  .pipeThrough(decoder);
+
+await decodedStream.pipeTo((await Deno.create("decoded.bin")).writable);
+```
+
+### Parameters
+
+- **urlMode** (`Boolean`, Optional): When set to true, expects base64url format. Default is `false`.
+
+### Features
+
+- Handles chunk boundaries automatically - no need to align input to 4-character boundaries
+- Memory efficient - processes data in chunks
+- Compatible with Web Streams API standard
 
 {% include multiplex.html %}
 
